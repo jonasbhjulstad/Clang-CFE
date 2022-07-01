@@ -11,8 +11,8 @@
 #include <iostream>
 #include <clang/Driver/Driver.h>
 #include <llvm/Support/Host.h>
-std::string inputPath = "getinmemory.c";
-std::string outputPath = "getinmemory";
+std::string inputPath = "mainfile.cpp";
+std::string outputPath = "mainfile";
 
 
 
@@ -26,8 +26,23 @@ int main(void)
         std::cout << "Found Clang: " << clangPath.get() << std::endl;
     }
 
+    std::vector<const char*> args;
+    args.push_back(clangPath.get().c_str());
+    args.push_back("-c");
+    args.push_back(inputPath.c_str());
+    args.push_back("-o");
+    args.push_back(outputPath.c_str());
 
-    clang::driver::Driver D(clangPath.get(), llvm::sys::getDefaultTargetTriple(), 
+
+
+    clang::ArrayRef<const char*> argsRef(args);
+    llvm::IntrusiveRefCntPtr<clang::DiagnosticOptions> diagOpts = new clang::DiagnosticOptions();
+    llvm::IntrusiveRefCntPtr<clang::DiagnosticIDs> DiagID(new clang::DiagnosticIDs());
+
+    clang::DiagnosticsEngine DE(DiagID, DO);
+
+
+
 
     return 0;
 }

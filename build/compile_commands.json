@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/jonas/Documents/Clang-CFE/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe  @CMakeFiles/compile_IR.dir/includes_CXX.rsp -g -o CMakeFiles\\compile_IR.dir\\compile_IR.cpp.obj -c C:\\Users\\jonas\\Documents\\Clang-CFE\\compile_IR.cpp",
+  "file": "C:/Users/jonas/Documents/Clang-CFE/compile_IR.cpp"
+}
+]

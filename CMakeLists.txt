@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.23)
 project(Clang_Test)
 find_package(Clang REQUIRED)
-
+set(CMAKE_CXX_STANDARD 17)
 execute_process(COMMAND llvm-config --libs all
 OUTPUT_VARIABLE llvm_libraries_str)
+execute_process(COMMAND llvm-config --cxxflagx OUTPUT_VARIABLE llvm_cxxflags_str)
 string(REPLACE " " ";" LLVM_LIBRARIES ${llvm_libraries_str})
-set(CMAKE_CXX_FLAGS ${llvm-config})
+set(CMAKE_CXX_FLAGS ${llvm_cxxflags_str})
 add_executable(compile_IR compile_IR.cpp)
 target_include_directories(compile_IR PRIVATE ${LLVM_INCLUDE_DIRS} ${CLANG_INCLUDE_DIRS})
 set_property(TARGET compile_IR PROPERTY CXX_STANDARD 17)
